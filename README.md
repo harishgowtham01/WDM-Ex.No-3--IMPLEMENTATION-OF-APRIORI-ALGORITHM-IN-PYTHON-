@@ -1,26 +1,31 @@
 # WDM-Ex.No-3--IMPLEMENTATION-OF-APRIORI-ALGORITHM-IN-PYTHON-
-**Aim:** 
-            To implement Apriori Algorithm in python. <br>
-**Implementation Steps:**
+## Name: HARISH GOWTHAM E
+## Reg no: 2305002009
+### Aim:
+To implement Apriori Algorithm in python.
+### Implementation Steps:
 Follow these steps to implement Apriori algorithm in Python: 
 
-**Import the Libraries**
+### Import the Libraries
 The first step, as always, is to import the required libraries. Execute the following script to do so: 
 
+```python
 import numpy as np 
 import matplotlib.pyplot as plt 
 import pandas as pd 
-from apyori import apriori 
+from apyori import apriori
+```
 In the script above we import pandas, numpy, pyplot, and apriori libraries. 
 
-**Importing the Dataset** 
+### Importing the Dataset
 Now let's import the dataset and see what we're working with. Download the dataset and place it in the "Datasets" 
 folder of the "D" drive (or change the code below to match the path of the file on your computer) and execute the 
 following script: 
+```python
 store_data = pd.read_csv('D:\\Datasets\\store_data.csv') 
 Let's call the head() function to see how the dataset looks: 
 store_data.head() 
-
+```
 <img width="729" height="172" alt="image" src="https://github.com/user-attachments/assets/25db435e-c7f0-407d-a56d-8450d13abd09" />
 
 
@@ -41,14 +46,16 @@ In this updated output you will see that the first line is now treated as a reco
  
 Now we will use the Apriori algorithm to find out which items are commonly sold together, so that store owner can 
 take action to place the related items together or advertise them together in order to have increased profit. 
-**Data Preprocessing** 
+### Data Preprocessing
 The Apriori library we are going to use requires our dataset to be in the form of a list of lists, where the whole dataset 
 is a big list and each transaction in the dataset is an inner list within the outer big list. Currently we have data in the 
 form of a pandas dataframe. To convert our pandas dataframe into a list of lists, execute the following script: 
+```python
 records = [] 
 for i in range(0, 7501): 
     records.append([str(store_data.values[i,j]) for j in range(0, 20)]) <br>
-**Applying Apriori** 
+```
+### Applying Apriori
 The next step is to apply the Apriori algorithm on the dataset. To do so, we can use the apriori class that we imported 
 from the apyori library. <br>
 The apriori class requires some parameter values to work. The first parameter is the list of list that you want to extract 
@@ -63,15 +70,19 @@ one week, since our dataset is for a one-week time period. The support for those
 finally min_length is 2 since we want at least two products in our rules. These values are mostly just arbitrarily 
 chosen, so you can play with these values and see what difference it makes in the rules you get back out. 
 Execute the following script: 
+```python
 association_rules = apriori(records, min_support=0.0045, min_confidence=0.2, min_lift=3, min_length=2) 
-association_results = list(association_rules) 
+association_results = list(association_rules)
+```
 In the second line here we convert the rules found by the apriori class into a list since it is easier to view the results in 
 this form. 
  
 
-**Viewing the Results** 
+### Viewing the Results
 Let's first find the total number of rules mined by the apriori class. Execute the following script: 
-print(len(association_rules)) 
+```
+print(len(association_rules))
+```
 The script above should return 48. Each item corresponds to one rule. 
 Let's print the first item in the association_rules list to see the first rule. Execute the following script: 
 print(association_rules[0]) 
@@ -92,6 +103,7 @@ the lift of 4.84 tells us that chicken is 4.84 times more likely to be bought by
 compared to the default likelihood of the sale of chicken. 
 The following script displays the rule, the support, the confidence, and lift for each rule in a clearer way: 
 for item in association_rules: 
+```python
     # first index of the inner list 
     # Contains base item and add item 
     pair = item[0]  
@@ -104,7 +116,7 @@ for item in association_rules:
     print("Confidence: " + str(item[2][0][2])) 
     print("Lift: " + str(item[2][0][3])) 
     print("=====================================") 
-
+```
 If you execute the above script, you will see all the rules returned by the apriori class. The first four rules returned by 
 the apriori class look like this: 
 Rule: light cream -> chicken 
@@ -137,8 +149,9 @@ the customers that buy mushroom cream sauce, compared to its default sale.
  
  
  
-Program: 
-```import numpy as np 
+### Program: 
+```python
+import numpy as np 
 #import matplotlib.pyplot as plt 
 import pandas as pd 
 from apyori import apriori 
@@ -163,12 +176,13 @@ for item in association_results:
  
 ```    
  
-Output: 
+### Output: 
  
  
- <img width="337" height="557" alt="image" src="https://github.com/user-attachments/assets/e885f01c-3af3-4bfb-99c9-ef14c5a61d01" />
+<img width="420" height="690" alt="image" src="https://github.com/user-attachments/assets/508f9f66-9975-4693-ab31-ca4e26450504" />
 
  
  
-Result: 
-             Thus, the python program for implementing Apriori Algorithm has been executed successfully. f
+### Result: 
+
+Thus, the python program for implementing Apriori Algorithm has been executed successfully. 
